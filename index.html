@@ -11,6 +11,8 @@
 
 	<span id="countdown"></span>
 
+	<span id="timer"></span>
+
 	<button id="subtract-life">Shoot the duck!</button>
 
 	<script>
@@ -38,12 +40,36 @@
 		updateUi();
 	};
 
-	var countDown
+	var timer = function(secondsDuration) {
+
+		var secondsLeft = secondsDuration;
+		var seconds = 1000;
+		var countDownInterval;
+
+		var countDown = function() {
+			secondsLeft -= 1;
+			updateUi();
+		};
+
+		var updateUi = function() {
+			var subtractSecond = document.querySelector("#timer");
+			subtractSecond.innerHTML = secondsLeft.toFixed(2);
+		};
+
+		var listenForEvents = function() {
+			setInterval(countDown,1 * seconds);
+		};
+
+		listenForEvents();
+		updateUi();
+
+	};
 
 
 	
 	var main = function() {
 		duckClicking();
+		timer(15);
 	};
 
 	main();
