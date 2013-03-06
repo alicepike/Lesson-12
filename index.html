@@ -8,22 +8,40 @@
 </head>
 
 <body>
+
+	<span id="countdown"></span>
+
+	<button id="subtract-life">Shoot the duck!</button>
+
 	<script>
 
-		var addAGreeting = function(listOfGreetings) {
-			listOfGreetings.push("hello");
 
-		};
 
-		var greetings = [];
+	var lives = 100;
 
-		addAGreeting(greetings);
-		addAGreeting(greetings);
-		addAGreeting(greetings);
-		addAGreeting(greetings);
+	var countDown = function() {
+		/*subtract one from 'lives' each time*/
+		lives -= 1;
+		updateUi();
+	};
 
-		console.log(greetings);
+	var updateUi = function() {
+		var countDown = document.querySelector("#countdown");
+		countDown.innerHTML = lives;
+	};
+
+	var listenForEvents = function() {
+		document.querySelector("#subtract-life");
+		subtractLife.addEventListener("click",countDown);
+	}; 
 	
-		</script>
+	var main = function() {
+		listenForEvents();
+		uodateUi();
+	};
+
+	main();
+	
+	</script>
 </body>
 </html>
