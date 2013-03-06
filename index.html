@@ -15,29 +15,35 @@
 
 	<script>
 
+	duckClicking = function() {
+		var lives = 100;
 
+		var countDown = function() {
+			/*subtract one from 'lives' each time*/
+			lives -= 1;
+			updateUi();
+		};
 
-	var lives = 100;
+		var updateUi = function() {
+			var countDown = document.querySelector("#countdown");
+			countDown.innerHTML = lives;
+		};
 
-	var countDown = function() {
-		/*subtract one from 'lives' each time*/
-		lives -= 1;
+		var listenForEvents = function() {
+			var subtractLife = document.querySelector("#subtract-life");
+			subtractLife.addEventListener("click",countDown);
+		}; 
+
+		listenForEvents();
 		updateUi();
 	};
 
-	var updateUi = function() {
-		var countDown = document.querySelector("#countdown");
-		countDown.innerHTML = lives;
-	};
+	var countDown
 
-	var listenForEvents = function() {
-		var subtractLife = document.querySelector("#subtract-life");
-		subtractLife.addEventListener("click",countDown);
-	}; 
+
 	
 	var main = function() {
-		listenForEvents();
-		uodateUi();
+		duckClicking();
 	};
 
 	main();
